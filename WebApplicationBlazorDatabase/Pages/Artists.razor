@@ -1,0 +1,28 @@
+﻿@page "/artists"
+<h3>Artists</h3>
+
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Codice</th>
+            <th scope="col">Nome Artista</th>
+            <th scope="col">Albums</th>
+            <th scope="col">Dettagli</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Artista item in lista)
+        {
+            <tr>
+                <th scope="row">@item.IDArtista</th>
+                <td>@item.Nome</td>
+                <td><a href="albums/@item.IDArtista">Album dell'Artista</a></td>
+                <td><a href="artistdetail/@item.IDArtista">Dettagli</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    List<Artista> lista = Artista.ListaArtisti;
+}

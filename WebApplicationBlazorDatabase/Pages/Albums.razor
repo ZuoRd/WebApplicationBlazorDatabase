@@ -1,0 +1,47 @@
+﻿@page "/albums/{ID:int}"
+<h3>Albums</h3>
+
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Codice</th>
+            <th scope="col">Titolo Album</th>
+            <th scope="col">Artista</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Album item in ListaChiamataSQL)
+        {
+                <tr>
+                    <th scope="row">@item.IDAlbum</th>
+                    <td>@item.Titolo</td>
+                    <td><a href="artistdetail/@item.ArtistaID">Artista dell'Album</a></td>
+                </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private int id;
+
+    [Parameter]
+    public int ID
+    {
+        get { return id; }
+        set { id = value; }
+    }
+
+    private List<Album> listaChiamataSQL;
+
+    public List<Album> ListaChiamataSQL
+    {
+        get
+        {
+            Artista myArtist = new Artista(id);
+            return myArtist.AlbumsArtista;
+        }
+        set { listaChiamataSQL = value; }
+    }
+
+    //public List<Album> lista = Album.ListaAlbum;
+}

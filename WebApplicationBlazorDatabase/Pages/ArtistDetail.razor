@@ -1,0 +1,18 @@
+﻿@page "/artistdetail/{ID:int}"
+<h3>ArtistDetail</h3>
+<p>Nome: @MyArtist.Nome</p>
+<p>Codice univoco: @MyArtist.IDArtista</p>
+<a href="/artists">Lista</a>
+@code {
+    private int id;
+
+    [Parameter]
+    public int ID
+    {
+        get { return id; }
+        set { id = value; }
+    }
+
+    public Artista MyArtist { get { return new Artista(ID); } }
+
+}
